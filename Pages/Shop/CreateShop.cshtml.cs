@@ -1,30 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BookListRazor.Data;
-using BookListRazor.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using BookListRazor.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using BookListRazor.Models;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookListRazor
 {
-    public class CreateModel : PageModel
+    public class ShopModel : PageModel
     {
         private readonly ApplicationDbContext _context;
-        public CreateModel(ApplicationDbContext context)
+        public ShopModel(ApplicationDbContext context)
         {
             _context = context;
         }
-
         [BindProperty]
-        public Books Books { get; set; }
-
+        public Shop Shops { get; set; }
         public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
             {
-                await _context.Books.AddAsync(Books);
+                await _context.Shops.AddAsync(Shops);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("Index");
             }
@@ -33,5 +28,6 @@ namespace BookListRazor
                 return Page();
             }
         }
+
     }
 }

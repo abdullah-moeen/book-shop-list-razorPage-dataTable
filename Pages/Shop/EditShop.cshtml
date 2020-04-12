@@ -1,0 +1,46 @@
+﻿@page
+@model BookListRazor.EditShopModel
+<br />
+<h2 class="text-info">Edit Shop</h2>
+<br />
+
+<div class="container border" style="padding: 20px">
+    <form method="post">
+        <input type="hidden" asp-for="Shops.ID"/>
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <label class="col-5">Shop Name*</label>
+            <div class="col-6">
+                <input type="text" asp-for="Shops.ShopName" class="form-control" />
+                <span asp-validation-for="Shops.ShopName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-5">Owner</label>
+            <div class="col-6">
+                <input type="text" asp-for="Shops.Owner" class="form-control" />
+                <span asp-validation-for="Shops.Owner" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-5">ISBN*</label>
+            <div class="col-6">
+                <input type="text" asp-for="Shops.ISBN" class="form-control" />
+                <span asp-validation-for="Shops.ISBN" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-5 col-3">
+                <input type="submit" value="Update" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="IndexShop" class="btn btn-success form-control text-white">Back to list</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

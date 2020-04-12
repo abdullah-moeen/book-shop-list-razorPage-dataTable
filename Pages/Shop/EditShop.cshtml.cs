@@ -9,24 +9,33 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookListRazor
 {
-    public class CreateModel : PageModel
+    public class EditShopModel : PageModel
     {
         private readonly ApplicationDbContext _context;
-        public CreateModel(ApplicationDbContext context)
+        public EditShopModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Books Books { get; set; }
+        public Shop Shops { get; set; }
+
+        public async Task OnGet(int id)
+        {
+            Shops = await _context.Shops.FindAsync(id);
+        }
 
         public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
             {
-                await _context.Books.AddAsync(Books);
+                var result = await _context.Shops.FindAsync(Shops.ID);
+                result.ShopName = Shops.ShopName;
+                result.Owner = Shops.Owner;
+                result.ISBN = Shops.ISBN;
                 await _context.SaveChangesAsync();
-                return RedirectToPage("Index");
+
+                return RedirectToPage("IndexShop");
             }
             else
             {
