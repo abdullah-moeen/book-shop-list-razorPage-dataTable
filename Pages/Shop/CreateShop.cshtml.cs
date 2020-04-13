@@ -21,7 +21,7 @@ namespace BookListRazor
             {
                 await _context.Shops.AddAsync(Shops);
                 await _context.SaveChangesAsync();
-                return RedirectToPage("Index");
+                return RedirectToPage("IndexShop");
             }
             else
             {
